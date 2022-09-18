@@ -9,6 +9,7 @@ public class PlayerControler : MonoBehaviour
 
     //public Text text;
     public float playerSpeed = 10;
+    public float topSpeed = 10;
     public Transform arrow;
     public float arrow_maltipler = 2;
 
@@ -47,9 +48,17 @@ public class PlayerControler : MonoBehaviour
             {
                 endPos = Input.mousePosition;
                 SetArrowSize(0);
-                Vector2 launchDir = (startPos - endPos).normalized;
-                this.rb.velocity = launchDir * playerSpeed;
 
+                Vector2 launchDir = (startPos - endPos);
+                if(Mathf.Sqrt(Mathf.Pow(launchDir.x, 2) + Mathf.Pow(launchDir.y, 2)) > topSpeed)//速度の上限を設定
+                {
+                    this.rb.velocity = launchDir = launchDir.normalized * topSpeed * playerSpeed;
+                }
+                else
+                {
+                    this.rb.velocity = launchDir * playerSpeed;//ボールの速度を直接操作
+                }
+                
                 GManager.instance.shotCount--;//残機を減らす
             }
 
