@@ -1,0 +1,79 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerControler : MonoBehaviour
+{
+    private Rigidbody2D rb;
+    private Vector3 startPos, currentPos, endPos;
+
+    //public Text text;
+    public float playerSpeed = 10;
+    public Transform arrow;
+    public float arrow_maltipler = 2;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        rb = this.gameObject.GetComponent<Rigidbody2D>();
+        SetArrowSize(0);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Vector2 force = Vector2.zero;
+        if (GManager.instance.shotCount > 0)
+        {
+            if (Input.GetMouseButtonDown(0))// マウスを押した地点の座標を記録
+            {
+                startPos = Input.mousePosition;
+            }else if (Input.GetMouseButton(0))
+            {
+                currentPos = Input.mousePosition;
+                Vector3 dir = startPos - currentPos;
+                
+                //矢印の向きを決める処理
+                float angle = Mathf.Atan2(dir.y, dir.x)* Mathf.Rad2Deg;
+                arrow.rotation = Quaternion.Euler(0, 0, angle);
+
+                //矢印の大きさを決める処理
+                float size = 0;
+                Vector3 normal = dir.normalized;
+                size = Mathf.Abs(normal.x * arrow_maltipler);
+                SetArrowSize(size);
+            }
+            else if (Input.GetMouseButtonUp(0))// マウスを離した地点の座標から、発射方向を計算
+            {
+                endPos = Input.mousePosition;
+                SetArrowSize(0);
+                Vector2 launchDir = (startPos - endPos).normalized;
+                this.rb.AddForce(launchDir * playerSpeed);
+
+                GManager.instance.shotCount--;//残機を減らす
+            }
+
+            // テスト用：スペースキー押下で停止
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                this.rb.velocity *= 0;
+            }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        this.rb.velocity *= 0.995f;
+    }
+
+    void SetArrowSize(float size)
+    {
+        Transform image = arrow_image();
+        image.localScale = new Vector3(size, image.localScale.y, image.localScale.z);
+    }
+
+    Transform arrow_image()
+    {
+        return arrow.GetChild(0);
+    }
+}
