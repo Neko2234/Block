@@ -35,7 +35,7 @@ public class PlayerControler : MonoBehaviour
             else if (Input.GetMouseButton(0))
             {
                 currentPos = Input.mousePosition;
-                Vector3 dir = startPos - currentPos;
+                Vector3 dir = (startPos - currentPos);
                 
                 //–îˆó‚ÌŒü‚«‚ğŒˆ‚ß‚éˆ—
                 float angle = Mathf.Atan2(dir.y, dir.x)* Mathf.Rad2Deg;
@@ -52,7 +52,7 @@ public class PlayerControler : MonoBehaviour
                 endPos = Input.mousePosition;
                 SetArrowSize(0);
 
-                Vector2 launchDir = (startPos - endPos);
+                Vector2 launchDir = (startPos - endPos)/10; //10•ª‚Ì1‚·‚é‚±‚Æ‚Åˆø‚Á’£‚é‹——£‚É‚æ‚é‘¬“x•Ï‰»‚Ö‚Ì‰e‹¿‚ğ‘‚â‚·
                 if(Mathf.Sqrt(Mathf.Pow(launchDir.x, 2) + Mathf.Pow(launchDir.y, 2)) > topSpeed)//‘¬“x‚ÌãŒÀ‚ğİ’è
                 {
                     this.rb.velocity = launchDir = launchDir.normalized * topSpeed * playerSpeed;
