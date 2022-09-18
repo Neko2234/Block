@@ -10,8 +10,10 @@ public class PlayerControler : MonoBehaviour
     //public Text text;
     public float playerSpeed = 10;
     public float topSpeed = 10;
-    public Transform arrow;
     public float arrow_maltipler = 2;
+    public float maxSize = 2;
+    public Transform arrow;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +31,8 @@ public class PlayerControler : MonoBehaviour
             if (Input.GetMouseButtonDown(0))// マウスを押した地点の座標を記録
             {
                 startPos = Input.mousePosition;
-            }else if (Input.GetMouseButton(0))
+            }
+            else if (Input.GetMouseButton(0))
             {
                 currentPos = Input.mousePosition;
                 Vector3 dir = startPos - currentPos;
@@ -78,7 +81,15 @@ public class PlayerControler : MonoBehaviour
     void SetArrowSize(float size)
     {
         Transform image = arrow_image();
-        image.localScale = new Vector3(size, image.localScale.y, image.localScale.z);
+        if (size > maxSize)//サイズ上限を設定
+        {
+            image.localScale = new Vector3(maxSize, image.localScale.y, image.localScale.z);
+        }
+        else
+        {
+            image.localScale = new Vector3(size, image.localScale.y, image.localScale.z);
+        }
+
     }
 
     Transform arrow_image()
