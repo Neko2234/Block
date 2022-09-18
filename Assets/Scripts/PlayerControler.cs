@@ -39,8 +39,8 @@ public class PlayerControler : MonoBehaviour
 
                 //矢印の大きさを決める処理
                 float size = 0;
-                Vector3 normal = dir.normalized;
-                size = Mathf.Abs(normal.x * arrow_maltipler);
+                //Vector3 normal = dir.normalized;
+                size = Mathf.Sqrt(Mathf.Pow(dir.x,2) + Mathf.Pow(dir.y,2)) * arrow_maltipler;
                 SetArrowSize(size);
             }
             else if (Input.GetMouseButtonUp(0))// マウスを離した地点の座標から、発射方向を計算
@@ -48,7 +48,7 @@ public class PlayerControler : MonoBehaviour
                 endPos = Input.mousePosition;
                 SetArrowSize(0);
                 Vector2 launchDir = (startPos - endPos).normalized;
-                this.rb.AddForce(launchDir * playerSpeed);
+                this.rb.velocity = launchDir * playerSpeed;
 
                 GManager.instance.shotCount--;//残機を減らす
             }

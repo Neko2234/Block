@@ -579,9 +579,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a0412e48288f474daa570fd2a540221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 700
+  playerSpeed: 10
   arrow: {fileID: 2112056556}
-  arrow_maltipler: 0.3
+  arrow_maltipler: 0.005
 --- !u!1001 &1097901635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -963,7 +963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
       propertyPath: shotCount
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
