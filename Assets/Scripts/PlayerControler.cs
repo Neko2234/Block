@@ -6,6 +6,8 @@ public class PlayerControler : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector3 startPos, currentPos, endPos;
+    private string BlockTag = "Block";
+    private string damageBlockTag = "DamageBlock";
 
     //public Text text;
     public float playerSpeed = 10;
@@ -71,6 +73,13 @@ public class PlayerControler : MonoBehaviour
                 this.rb.velocity *= 0;
             }
         }
+
+        // テスト用：スペースキー押下で停止
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GManager.instance.shotCount--;//残機を減らす
+            this.rb.velocity *= 0;
+        }
     }
 
     void FixedUpdate()
@@ -95,5 +104,21 @@ public class PlayerControler : MonoBehaviour
     Transform arrow_image()
     {
         return arrow.GetChild(0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == damageBlockTag || collision.collider.tag == BlockTag)
+        {
+            ObjectCollision o = collision.gameObject.GetComponent<ObjectCollision>();
+            if (o != null)
+            {
+                o.playerCollide = true;        //ぶつかったものに対してぶつかった事を通知する
+            }
+            else
+            {
+                Debug.Log("ObjectCollisionが付いてないよ!");
+            }
+        }
     }
 }
