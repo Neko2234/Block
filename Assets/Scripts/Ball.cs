@@ -27,6 +27,7 @@ public class Ball : MonoBehaviour
         {
             Debug.Log(this.rb.velocity.magnitude);
             this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GManager.instance.isMove = false;
         }
     }
 }

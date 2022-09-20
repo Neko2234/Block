@@ -18,7 +18,7 @@ public class DamageBlock : MonoBehaviour
     {
         if (oc.playerCollide)
         {
-            GManager.instance.shotCount -= DamageCount;
+            GManager.instance.SubShotCount(DamageCount);
             Destroy(this.gameObject);
         }
     }

@@ -14,7 +14,7 @@ public class PlayerControler : MonoBehaviour
     public float topSpeed = 10;
     public float arrow_maltipler = 2;
     public float maxSize = 2;
-    public bool damaged = false;
+    [HideInInspector] public bool damaged = false;
     public Transform arrow;
     
 
@@ -64,22 +64,25 @@ public class PlayerControler : MonoBehaviour
                 {
                     this.rb.velocity = launchDir * playerSpeed;//ボールの速度を直接操作
                 }
-                
-                GManager.instance.shotCount--;//残機を減らす
+                GManager.instance.isMove = true;
+
+                GManager.instance.SubShotCount(1);//弾数を減らす
             }
 
-            // テスト用：スペースキー押下で停止
+            //スペースキー押下で停止
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 this.rb.velocity *= 0;
+                GManager.instance.isMove = false;
             }
         }
 
-        // テスト用：スペースキー押下で停止
+        //スペースキー押下で停止
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GManager.instance.shotCount--;//残機を減らす
+            GManager.instance.SubShotCount(1);//残機を減らす
             this.rb.velocity *= 0;
+            GManager.instance.isMove = false;
         }
     }
 
