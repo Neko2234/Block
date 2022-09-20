@@ -7,6 +7,7 @@ public class shotCount : MonoBehaviour
 {
     private Text shotCountText = null;
     private int oldShotCount = 0;
+    private PlayerControler player;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,18 @@ public class shotCount : MonoBehaviour
         {
             shotCountText.text = ""+GManager.instance.shotCount;
             oldShotCount = GManager.instance.shotCount;
+        }
+
+        //ゲームオーバーを表示
+        if(GManager.instance.isGameOver)
+        {
+            shotCountText.text = "Game Over";
+        }
+
+        //ゲームクリアを表示
+        if (GManager.instance.isGameClear)
+        {
+            shotCountText.text = "Game Clear!!";
         }
     }
 }

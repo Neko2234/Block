@@ -14,6 +14,7 @@ public class PlayerControler : MonoBehaviour
     public float topSpeed = 10;
     public float arrow_maltipler = 2;
     public float maxSize = 2;
+    public bool damaged = false;
     public Transform arrow;
     
 
@@ -110,6 +111,11 @@ public class PlayerControler : MonoBehaviour
     {
         if (collision.collider.tag == damageBlockTag || collision.collider.tag == BlockTag)
         {
+            if(collision.collider.tag == damageBlockTag)
+            {
+                damaged = true;
+            }
+
             ObjectCollision o = collision.gameObject.GetComponent<ObjectCollision>();
             if (o != null)
             {

@@ -8,6 +8,8 @@ public class GManager : MonoBehaviour
     public int shotCount;
     public int stageNum;
     public int continueNum;
+    public bool isGameOver = false;
+    public bool isGameClear = false;
 
     private void Awake()
     {
