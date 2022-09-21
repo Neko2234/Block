@@ -15,6 +15,7 @@ public class StageCtrl : MonoBehaviour
     private bool startFade = false;
     private bool doGameOver = false;
     private bool retryGame = false;
+    private bool goToSelect = false;
     private bool doSceneChange = false;
 
     // Start is called before the first frame update
@@ -54,7 +55,7 @@ public class StageCtrl : MonoBehaviour
             if (fade.IsFadeOutComplete())
             {
                 //ゲームリトライ
-                if (retryGame)
+                if (retryGame || goToSelect)
                 {
                     GManager.instance.RetryGame();
                 }
@@ -63,7 +64,16 @@ public class StageCtrl : MonoBehaviour
                 {
                     GManager.instance.stageNum = nextStageNum;
                 }
-                SceneManager.LoadScene("stage" + nextStageNum);
+
+                if (nextStageNum == 0)
+                {
+                    SceneManager.LoadScene("StageSelect");
+                }
+                else
+                {
+                    SceneManager.LoadScene("stage" + nextStageNum);
+                }
+                
                 doSceneChange = true;
             }
         }
@@ -74,9 +84,19 @@ public class StageCtrl : MonoBehaviour
     /// </summary>
     public void Retry()
     {
-        ChangeScene(1); //最初のステージに戻るので１
+        ChangeScene(GManager.instance.stageNum); //同じステージに戻るので
         retryGame = true;
-        Debug.Log("retry");
+        Debug.Log("retry"+ GManager.instance.stageNum);
+    }
+
+    /// <summary>
+    /// ステージセレクトに戻る
+    /// </summary>
+    public void GoToSelect()
+    {
+        ChangeScene(0); //セレクト画面に戻るので0
+        goToSelect = true;
+        Debug.Log("select" + GManager.instance.stageNum);
     }
 
     /// <summary>

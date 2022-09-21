@@ -598,7 +598,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
+      propertyPath: shotCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
+      propertyPath: defaultShotCount
+      value: 55
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -9082799224487490777, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
 --- !u!1 &1135181477
 GameObject:
@@ -711,6 +720,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214218774}
   m_CullTransparentMesh: 1
+--- !u!1 &1229710960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1229710962}
+  - component: {fileID: 1229710961}
+  m_Layer: 0
+  m_Name: GameCtrl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1229710961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229710960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f2a3b85c0a1174d8e6a1ef6598b738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisStage_defaultShotCount: 0
+  thisStageNum: 0
+--- !u!4 &1229710962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229710960}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.42253187, y: 1.3407172, z: -91.26005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393086296
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,26 +848,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1831089877}
-        m_TargetAssemblyTypeName: StageSlectCtrl, Assembly-CSharp
-        m_MethodName: SelectBt
+      - m_Target: {fileID: 1831089879}
+        m_TargetAssemblyTypeName: StageCtrl, Assembly-CSharp
+        m_MethodName: ChangeScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: StageSlectCtrl, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1114,6 +1156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1831089878}
   - component: {fileID: 1831089877}
+  - component: {fileID: 1831089879}
   m_Layer: 0
   m_Name: StageSelectCtrl
   m_TagString: Untagged
@@ -1128,7 +1171,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831089876}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac9261066a393bd498e7f6238ea51026, type: 3}
   m_Name: 
@@ -1148,6 +1191,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1831089879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831089876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d770743181c66864597affba84ffc2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerObj: {fileID: 0}
+  continuePoint: {fileID: 0}
+  gameOverObj: {fileID: 0}
+  fade: {fileID: 293938370}
 --- !u!1 &2066562442
 GameObject:
   m_ObjectHideFlags: 0

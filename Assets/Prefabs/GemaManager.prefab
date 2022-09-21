@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1121541765389373171}
   - component: {fileID: 1121541765389373180}
+  - component: {fileID: -9082799224487490777}
+  - component: {fileID: 8987682183358052987}
   m_Layer: 0
   m_Name: GemaManager
   m_TagString: Untagged
@@ -44,5 +46,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotCount: 0
+  defaultShotCount: 0
   stageNum: 0
-  continueNum: 0
+  isGameOver: 0
+  isGameClear: 0
+  isMove: 0
+--- !u!114 &-9082799224487490777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121541765389373170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9ba13b029db754f9ac0f58ed677a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8987682183358052987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121541765389373170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d9ba13b029db754f9ac0f58ed677a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

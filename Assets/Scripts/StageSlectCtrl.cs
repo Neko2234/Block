@@ -25,12 +25,22 @@ public class StageSlectCtrl : MonoBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (!goNextScene && fade.IsFadeOutComplete())
         {
-            SceneManager.LoadScene("Stage" + stageNum);
-            goNextScene = true;
+            /*if(stageNum == 0)
+            {
+                GManager.instance.RetryGame();
+                SceneManager.LoadScene("StageSelect");
+                goNextScene = true;
+            }
+            else
+
+            {
+                SceneManager.LoadScene("Stage" + stageNum);
+                goNextScene = true;
+            }
         }
-    }
+    }*/
 }
