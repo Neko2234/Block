@@ -6,9 +6,9 @@ public class GManager : MonoBehaviour
 {
     public static GManager instance = null;
 
-    [Header("現在の弾数")] public int shotCount;
-    [Header("デフォルトの弾数")] public int defaultShotCount;
-    [Header("現在のステージ")] public int stageNum;
+    [Header("現在の弾数")] public int shotCount = 10;
+    [Header("デフォルトの弾数")] public int defaultShotCount = 10;
+    [Header("現在のステージ")] public int stageNum = 1;
     [HideInInspector] public bool isGameOver = false;
     [HideInInspector] public bool isGameClear = false;
     [HideInInspector] public bool isMove = false;
