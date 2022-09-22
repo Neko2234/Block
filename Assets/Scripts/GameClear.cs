@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class GameClear : MonoBehaviour
 {
-    public Text gameClearMessage;
+    private bool doGameClear = false;
     Transform myTransform;
 
     void Start()
@@ -15,9 +15,10 @@ public class GameClear : MonoBehaviour
     void Update()
     {
         // Žq‹Ÿ‚ª‚¢‚È‚­‚È‚Á‚½‚çisGameClearƒtƒ‰ƒO‚ð—§‚Ä‚é
-        if (myTransform.childCount == 0)
+        if (myTransform.childCount == 0 && !doGameClear)
         {
             GManager.instance.isGameClear = true;
+            doGameClear = true;
         }
     }
 }

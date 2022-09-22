@@ -8,12 +8,14 @@ public class StageCtrl : MonoBehaviour
     [Header("プレイヤーゲームオブジェクト")] public GameObject playerObj;
     [Header("コンティニュー位置")] public GameObject continuePoint;
     [Header("ゲームオーバー")] public GameObject gameOverObj;
+    [Header("ゲームクリア")] public GameObject gameClearObj;
     [Header("フェード")] public FadeImage fade;
 
     private PlayerControler p;
     private int nextStageNum;
     private bool startFade = false;
     private bool doGameOver = false;
+    private bool doGameClear = false;
     private bool retryGame = false;
     private bool goToSelect = false;
     private bool doSceneChange = false;
@@ -21,9 +23,12 @@ public class StageCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (playerObj != null && continuePoint != null && gameOverObj != null && fade != null)
+        doGameOver = false;
+        doGameClear = false;
+        if (playerObj != null && continuePoint != null && gameOverObj != null && gameClearObj != null && fade != null)
         {
             gameOverObj.SetActive(false);
+            gameClearObj.SetActive(false);
             playerObj.transform.position = continuePoint.transform.position;
             p = playerObj.GetComponent<PlayerControler>();
             if (p == null)
@@ -47,6 +52,13 @@ public class StageCtrl : MonoBehaviour
         {
             gameOverObj.SetActive(true);
             doGameOver = true;
+        }
+
+        //ゲームクリア時の処理
+        if (GManager.instance.isGameClear && !doGameClear)
+        {
+            gameClearObj.SetActive(true);
+            doGameClear = true;
         }
 
         //ステージを切り替える

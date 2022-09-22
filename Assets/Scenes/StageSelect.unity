@@ -600,7 +600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
       propertyPath: shotCount
-      value: 3
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
       propertyPath: defaultShotCount
@@ -764,6 +764,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1349427435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1349427436}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1349427436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349427435}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.42253187, y: 1.3407172, z: -91.26005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393086296
 GameObject:
@@ -1203,9 +1233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d770743181c66864597affba84ffc2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerObj: {fileID: 0}
-  continuePoint: {fileID: 0}
-  gameOverObj: {fileID: 0}
+  playerObj: {fileID: 1349427435}
+  continuePoint: {fileID: 1349427435}
+  gameOverObj: {fileID: 1349427435}
+  gameClearObj: {fileID: 1349427435}
   fade: {fileID: 293938370}
 --- !u!1 &2066562442
 GameObject:

@@ -10,7 +10,7 @@ public class StageSlectCtrl : MonoBehaviour
 
     private int stageNum;
     private bool firstPush = false;
-    private bool goNextScene = false;
+    //private bool goNextScene = false;
 
     //ステージボタンを押されたら呼ばれる
     public void SelectBt(int Stage)

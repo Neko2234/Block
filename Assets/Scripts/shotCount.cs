@@ -36,13 +36,13 @@ public class shotCount : MonoBehaviour
         //ゲームオーバーを表示
         if(GManager.instance.isGameOver)
         {
-            //shotCountText.text = "Game Over";
+            shotCountText.text = "";
         }
 
         //ゲームクリアを表示
         if (GManager.instance.isGameClear)
         {
-            shotCountText.text = "Game Clear!!";
+            shotCountText.text = "";
         }
     }
 }

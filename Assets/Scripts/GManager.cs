@@ -52,6 +52,7 @@ public class GManager : MonoBehaviour
     public void RetryGame()
     {
         isGameOver = false;
+        isGameClear = false;
         isMove = false;
         shotCount = defaultShotCount;
         stageNum = 1;

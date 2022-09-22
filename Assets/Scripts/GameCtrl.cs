@@ -16,4 +16,13 @@ public class GameCtrl : MonoBehaviour
         thisStage_defaultShotCount = GManager.instance.defaultShotCount;
         thisStageNum = GManager.instance.stageNum;
     }
+
+    void Update()
+    {
+        if(GManager.instance.isGameOver || GManager.instance.isGameClear)
+        {
+            thisStage_defaultShotCount = GManager.instance.defaultShotCount;
+            thisStageNum = GManager.instance.stageNum;
+        }
+    }
 }

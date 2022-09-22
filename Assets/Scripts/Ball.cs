@@ -12,6 +12,8 @@ public class Ball : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GManager.instance.isMove = false;
+
         rb = this.gameObject.GetComponent<Rigidbody2D>();
 
         Vector2 force = new Vector2(speedX, speedY);
@@ -27,6 +29,11 @@ public class Ball : MonoBehaviour
         {
             Debug.Log(this.rb.velocity.magnitude);
             this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            GManager.instance.isMove = false;
+        }
+
+        if(this.rb.velocity.magnitude == 0)
+        {
             GManager.instance.isMove = false;
         }
     }
