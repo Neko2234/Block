@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1831089877}
-        m_TargetAssemblyTypeName: StageSlectCtrl, Assembly-CSharp
-        m_MethodName: SelectBt
+      - m_Target: {fileID: 1831089879}
+        m_TargetAssemblyTypeName: StageCtrl, Assembly-CSharp
+        m_MethodName: ChangeScene
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -720,51 +720,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214218774}
   m_CullTransparentMesh: 1
---- !u!1 &1229710960
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1229710962}
-  - component: {fileID: 1229710961}
-  m_Layer: 0
-  m_Name: GameCtrl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1229710961
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229710960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f2a3b85c0a1174d8e6a1ef6598b738, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisStage_defaultShotCount: 0
-  thisStageNum: 0
---- !u!4 &1229710962
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1229710960}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.42253187, y: 1.3407172, z: -91.26005}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1349427435
 GameObject:
   m_ObjectHideFlags: 0
@@ -793,7 +748,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1393086296
 GameObject:
@@ -1185,7 +1140,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1831089878}
-  - component: {fileID: 1831089877}
   - component: {fileID: 1831089879}
   m_Layer: 0
   m_Name: StageSelectCtrl
@@ -1194,19 +1148,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1831089877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831089876}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac9261066a393bd498e7f6238ea51026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fade: {fileID: 293938370}
 --- !u!4 &1831089878
 Transform:
   m_ObjectHideFlags: 0
@@ -1233,6 +1174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d770743181c66864597affba84ffc2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisStage_defaultShotCount: 1
   playerObj: {fileID: 1349427435}
   continuePoint: {fileID: 1349427435}
   gameOverObj: {fileID: 1349427435}

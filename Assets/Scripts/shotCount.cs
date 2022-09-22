@@ -29,7 +29,7 @@ public class shotCount : MonoBehaviour
     {
         if(oldShotCount != GManager.instance.shotCount)
         {
-            shotCountText.text = ""+GManager.instance.shotCount;
+            shotCountText.text = ""+ GManager.instance.shotCount;
             oldShotCount = GManager.instance.shotCount;
         }
 

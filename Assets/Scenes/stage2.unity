@@ -1966,10 +1966,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
-      propertyPath: gc
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
       propertyPath: stageNum
       value: 1
       objectReference: {fileID: 0}
@@ -2193,7 +2189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d770743181c66864597affba84ffc2ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thisStage_defaultShotCount: 3
+  thisStage_defaultShotCount: 5
+  thisStageNum: 2
   playerObj: {fileID: 1008825883}
   continuePoint: {fileID: 770983069}
   gameOverObj: {fileID: 1750593240}
@@ -2946,7 +2943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 663482296524771216, guid: fdabb763235c52e4087ecb1e05d9e68e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6922839
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 663482296524771216, guid: fdabb763235c52e4087ecb1e05d9e68e, type: 3}
       propertyPath: m_LocalPosition.y

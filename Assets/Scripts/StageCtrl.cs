@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StageCtrl : MonoBehaviour
 {
+    [Header("このステージのデフォルトの弾数")] public int thisStage_defaultShotCount;
+    [Header("このステージ")] public int thisStageNum;
     [Header("プレイヤーゲームオブジェクト")] public GameObject playerObj;
     [Header("コンティニュー位置")] public GameObject continuePoint;
     [Header("ゲームオーバー")] public GameObject gameOverObj;
@@ -23,6 +25,14 @@ public class StageCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (thisStage_defaultShotCount == 0)
+        {
+            Debug.Log("初期弾数が設定されてない！");
+        }
+        GManager.instance.shotCount = thisStage_defaultShotCount;
+        GManager.instance.defaultShotCount = thisStage_defaultShotCount;
+        thisStageNum = GManager.instance.stageNum;
+
         doGameOver = false;
         doGameClear = false;
         if (playerObj != null && continuePoint != null && gameOverObj != null && gameClearObj != null && fade != null)
@@ -47,6 +57,7 @@ public class StageCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(GManager.instance.shotCount);
         //ゲームオーバー時の処理
         if (GManager.instance.isGameOver && !doGameOver)
         {
@@ -69,6 +80,7 @@ public class StageCtrl : MonoBehaviour
                 //ゲームリトライ
                 if (retryGame || goToSelect)
                 {
+                    //GManager.instance.shotCount = thisStage_defaultShotCount;
                     GManager.instance.RetryGame();
                 }
                 //次のステージ

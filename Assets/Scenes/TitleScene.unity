@@ -991,11 +991,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
       propertyPath: shotCount
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1121541765389373180, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
       propertyPath: defaultShotCount
-      value: 3
+      value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8987682183358052987, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8987682183358052987, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 00a864bd3c0b69c49a716c633447876f, type: 3}
