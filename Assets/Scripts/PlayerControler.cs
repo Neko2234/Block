@@ -7,14 +7,13 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 startPos, currentPos, endPos;
     private string BlockTag = "Block";
-    private string damageBlockTag = "DamageBlock";
 
     //public Text text;
     public float playerSpeed = 10;
     public float topSpeed = 10;
+    public float dec_speed = 0.995f;
     public float arrow_maltipler = 2;
     public float maxSize = 2;
-    [HideInInspector] public bool damaged = false;
     public Transform arrow;
     
 
@@ -88,7 +87,12 @@ public class PlayerControler : MonoBehaviour
 
     void FixedUpdate()
     {
-        this.rb.velocity *= 0.995f;
+        this.rb.velocity *= dec_speed;
+        if (GManager.instance.isGameOver || GManager.instance.isGameClear)
+        {
+            this.rb.velocity *= 0;
+            GManager.instance.shotCount = 0;
+        }
     }
 
     void SetArrowSize(float size)
@@ -112,12 +116,8 @@ public class PlayerControler : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == damageBlockTag || collision.collider.tag == BlockTag)
+        if (collision.collider.tag == BlockTag)
         {
-            if(collision.collider.tag == damageBlockTag)
-            {
-                damaged = true;
-            }
 
             ObjectCollision o = collision.gameObject.GetComponent<ObjectCollision>();
             if (o != null)

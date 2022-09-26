@@ -15,7 +15,7 @@ public class GameClear : MonoBehaviour
     void Update()
     {
         // Žq‹Ÿ‚ª‚¢‚È‚­‚È‚Á‚½‚çisGameClearƒtƒ‰ƒO‚ð—§‚Ä‚é
-        if (myTransform.childCount == 0 && !doGameClear)
+        if (myTransform.childCount == 0 && !doGameClear && !GManager.instance.isGameOver)
         {
             GManager.instance.isGameClear = true;
             doGameClear = true;

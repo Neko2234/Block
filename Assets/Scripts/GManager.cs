@@ -46,6 +46,11 @@ public class GManager : MonoBehaviour
         }
     }
 
+    public void Death()
+    {
+        isGameOver = true;
+    }
+
     /// <summary>
     /// Å‰‚©‚çn‚ß‚é‚Ìˆ—
     /// </summary>
@@ -55,6 +60,6 @@ public class GManager : MonoBehaviour
         isGameClear = false;
         isMove = false;
         shotCount = defaultShotCount;
-        stageNum = 1;
+        //stageNum = 1;
     }
 }

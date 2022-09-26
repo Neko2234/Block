@@ -31,7 +31,7 @@ public class StageCtrl : MonoBehaviour
         }
         GManager.instance.shotCount = thisStage_defaultShotCount;
         GManager.instance.defaultShotCount = thisStage_defaultShotCount;
-        thisStageNum = GManager.instance.stageNum;
+        GManager.instance.stageNum = thisStageNum;
 
         doGameOver = false;
         doGameClear = false;
@@ -57,7 +57,7 @@ public class StageCtrl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(GManager.instance.shotCount);
+        //Debug.Log(GManager.instance.shotCount);
         //ゲームオーバー時の処理
         if (GManager.instance.isGameOver && !doGameOver)
         {
