@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1603573574}
   m_Layer: 0
   m_Name: DamageBlock
-  m_TagString: Block
+  m_TagString: DamageBlock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamageCount: 2
+  damageSE: {fileID: 0}
 --- !u!61 &663482296524771217
 BoxCollider2D:
   m_ObjectHideFlags: 0

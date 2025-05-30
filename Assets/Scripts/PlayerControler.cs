@@ -7,6 +7,9 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody2D rb;
     private Vector3 startPos, currentPos, endPos;
     private string BlockTag = "Block";
+    private string DamageBlockTag = "DamageBlock";
+    private string WallTag = "Wall";
+    [SerializeField] private ParticleSystem particle;
 
     //public Text text;
     public float playerSpeed = 10;
@@ -14,8 +17,14 @@ public class PlayerControler : MonoBehaviour
     public float dec_speed = 0.995f;
     public float arrow_maltipler = 2;
     public float maxSize = 2;
+    public float liftArrow = 200;
     public Transform arrow;
-    
+    [SerializeField] private AudioClip shotSE;
+    [SerializeField] private AudioClip blockSE;
+    [SerializeField] private AudioClip wallSE;
+    [SerializeField] private AudioClip damageSE;
+    [SerializeField] private AudioClip stopSE;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,52 +43,66 @@ public class PlayerControler : MonoBehaviour
             {
                 startPos = Input.mousePosition;
             }
-            else if (Input.GetMouseButton(0))
+            else if (Input.GetMouseButton(0) && !GManager.instance.openingPanel)
             {
+                
                 currentPos = Input.mousePosition;
                 Vector3 dir = (startPos - currentPos);
-                
-                //矢印の向きを決める処理
-                float angle = Mathf.Atan2(dir.y, dir.x)* Mathf.Rad2Deg;
-                arrow.rotation = Quaternion.Euler(0, 0, angle);
 
-                //矢印の大きさを決める処理
-                float size = 0;
-                //Vector3 normal = dir.normalized;
-                size = Mathf.Sqrt(Mathf.Pow(dir.x,2) + Mathf.Pow(dir.y,2)) * arrow_maltipler;
-                SetArrowSize(size);
+                if (dir.magnitude > liftArrow)
+                {
+                    //矢印の向きを決める処理
+                    float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                    arrow.rotation = Quaternion.Euler(0, 0, angle);
+
+                    //矢印の大きさを決める処理
+                    float size = 0;
+                    //Vector3 normal = dir.normalized;
+                    size = Mathf.Sqrt(Mathf.Pow(dir.x, 2) + Mathf.Pow(dir.y, 2)) * arrow_maltipler;
+                    SetArrowSize(size);
+                }
+                else
+                {
+                    SetArrowSize(0);
+                }
             }
-            else if (Input.GetMouseButtonUp(0))// マウスを離した地点の座標から、発射方向を計算
+            else if (Input.GetMouseButtonUp(0) && !GManager.instance.openingPanel)// マウスを離した地点の座標から、発射方向を計算
             {
                 endPos = Input.mousePosition;
                 SetArrowSize(0);
 
-                Vector2 launchDir = (startPos - endPos)/10; //10分の1することで引っ張る距離による速度変化への影響を増やす
-                if(Mathf.Sqrt(Mathf.Pow(launchDir.x, 2) + Mathf.Pow(launchDir.y, 2)) > topSpeed)//速度の上限を設定
+                if ((startPos-endPos).magnitude > liftArrow)
                 {
-                    this.rb.velocity = launchDir = launchDir.normalized * topSpeed * playerSpeed;
-                }
-                else
-                {
-                    this.rb.velocity = launchDir * playerSpeed;//ボールの速度を直接操作
-                }
-                GManager.instance.isMove = true;
+                    Vector2 launchDir = (startPos - endPos) / 10; //10分の1することで引っ張る距離による速度変化への影響を増やす
+                    GManager.instance.PlaySE(shotSE);//ショットSE
 
-                GManager.instance.SubShotCount(1);//弾数を減らす
+                    if (Mathf.Sqrt(Mathf.Pow(launchDir.x, 2) + Mathf.Pow(launchDir.y, 2)) > topSpeed)//速度の上限を設定
+                    {
+                        this.rb.velocity = launchDir = launchDir.normalized * topSpeed * playerSpeed;
+                    }
+                    else
+                    {
+                        this.rb.velocity = launchDir * playerSpeed;//ボールの速度を直接操作
+                    }
+                    GManager.instance.isMove = true;
+
+                    GManager.instance.SubShotCount(1);//弾数を減らす
+                }
             }
 
             //スペースキー押下で停止
-            if (Input.GetKeyDown(KeyCode.Space))
+            /*if (Input.GetKeyDown(KeyCode.Space))
             {
                 this.rb.velocity *= 0;
                 GManager.instance.isMove = false;
-            }
+            }*/
         }
 
         //スペースキー押下で停止
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GManager.instance.SubShotCount(1);//残機を減らす
+            //GManager.instance.SubShotCount(1);//残機を減らす
+            GManager.instance.PlaySE(stopSE);
             this.rb.velocity *= 0;
             GManager.instance.isMove = false;
         }
@@ -91,7 +114,9 @@ public class PlayerControler : MonoBehaviour
         if (GManager.instance.isGameOver || GManager.instance.isGameClear)
         {
             this.rb.velocity *= 0;
+            SetArrowSize(0);
             GManager.instance.shotCount = 0;
+
         }
     }
 
@@ -116,9 +141,8 @@ public class PlayerControler : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == BlockTag)
+        if (collision.collider.tag == BlockTag || collision.collider.tag == DamageBlockTag)
         {
-
             ObjectCollision o = collision.gameObject.GetComponent<ObjectCollision>();
             if (o != null)
             {
@@ -128,6 +152,28 @@ public class PlayerControler : MonoBehaviour
             {
                 Debug.Log("ObjectCollisionが付いてないよ!");
             }
+
+            if (collision.collider.tag == BlockTag)
+            {
+                GManager.instance.PlaySE(blockSE);
+            }
+            else if(collision.collider.tag == DamageBlockTag)
+            {
+                // パーティクルシステムのインスタンスを生成する。
+                ParticleSystem newParticle = Instantiate(particle);
+                // パーティクルの発生場所をこのスクリプトをアタッチしているGameObjectの場所にする。
+                newParticle.transform.position = this.transform.position;
+                // パーティクルを発生させる。
+                newParticle.Play();
+                // インスタンス化したパーティクルシステムのGameObjectを削除する。(任意)
+                // ※第一引数をnewParticleだけにするとコンポーネントしか削除されない。
+                Destroy(this.gameObject);
+                GManager.instance.PlaySE(damageSE);
+            }
+        }
+        if(collision.collider.tag == WallTag)
+        {
+            GManager.instance.PlaySE(wallSE);
         }
     }
 }

@@ -9,10 +9,12 @@ public class Title : MonoBehaviour
 
     private bool firstPush = false;
     private bool goNextScene = false;
+    [SerializeField] private AudioClip startSE;
 
     //スタートボタンを押されたら呼ばれる
     public void PressStart()
     {
+        GManager.instance.PlaySE(startSE);
         Debug.Log("Press Start!");
         if (!firstPush)
         {

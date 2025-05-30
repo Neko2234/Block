@@ -12,6 +12,7 @@ public class StageCtrl : MonoBehaviour
     [Header("ゲームオーバー")] public GameObject gameOverObj;
     [Header("ゲームクリア")] public GameObject gameClearObj;
     [Header("フェード")] public FadeImage fade;
+    [SerializeField] private AudioClip buttonSE;
 
     private PlayerControler p;
     private int nextStageNum;
@@ -70,6 +71,16 @@ public class StageCtrl : MonoBehaviour
         {
             gameClearObj.SetActive(true);
             doGameClear = true;
+
+            //次のステージを開放
+            //PlayerPrefsのSCOREに次のステージ番号を入れる
+            if (PlayerPrefs.GetInt("SCORE") <= thisStageNum)
+            {
+                PlayerPrefs.SetInt("SCORE", thisStageNum + 1);
+                //PlayerPrefsをセーブする         
+                PlayerPrefs.Save();
+                Debug.Log(thisStageNum + 1);
+            }
         }
 
         //ステージを切り替える
@@ -129,6 +140,7 @@ public class StageCtrl : MonoBehaviour
     /// <param name="num">ステージ番号</param>
     public void ChangeScene(int num)
     {
+        GManager.instance.PlaySE(buttonSE);
         if (fade != null)
         {
             nextStageNum = num;

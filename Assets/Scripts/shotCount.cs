@@ -33,13 +33,13 @@ public class shotCount : MonoBehaviour
             oldShotCount = GManager.instance.shotCount;
         }
 
-        //ゲームオーバーを表示
+        //ゲームオーバーの時数字を消去
         if(GManager.instance.isGameOver)
         {
             shotCountText.text = "";
         }
 
-        //ゲームクリアを表示
+        //ゲームクリアの時数字を消去
         if (GManager.instance.isGameClear)
         {
             shotCountText.text = "";

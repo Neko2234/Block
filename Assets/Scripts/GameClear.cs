@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class GameClear : MonoBehaviour
 {
+    [SerializeField] private AudioClip clearSE;
     private bool doGameClear = false;
     Transform myTransform;
 
@@ -17,6 +18,7 @@ public class GameClear : MonoBehaviour
         // Žq‹Ÿ‚ª‚¢‚È‚­‚È‚Á‚½‚çisGameClearƒtƒ‰ƒO‚ð—§‚Ä‚é
         if (myTransform.childCount == 0 && !doGameClear && !GManager.instance.isGameOver)
         {
+            GManager.instance.PlaySE(clearSE);
             GManager.instance.isGameClear = true;
             doGameClear = true;
         }

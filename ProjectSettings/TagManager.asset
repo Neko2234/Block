@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Block
   - DamageBlock
+  - Wall
+  - Key
   layers:
   - Default
   - TransparentFX

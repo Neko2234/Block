@@ -12,6 +12,9 @@ public class GManager : MonoBehaviour
     [HideInInspector] public bool isGameOver = false;
     [HideInInspector] public bool isGameClear = false;
     [HideInInspector] public bool isMove = false;
+    [HideInInspector] public bool openingPanel = false;
+
+    private AudioSource audioSource = null;
 
     private void Awake()
     {
@@ -24,6 +27,11 @@ public class GManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void AddShotCount()
@@ -60,6 +68,22 @@ public class GManager : MonoBehaviour
         isGameClear = false;
         isMove = false;
         shotCount = defaultShotCount;
+        openingPanel = false;
         //stageNum = 1;
+    }
+
+    /// <summary>
+    /// SEを鳴らす
+    /// </summary>
+    public void PlaySE(AudioClip clip)
+    {
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+        else
+        {
+            Debug.Log("オーディオソースが設定されていません");
+        }
     }
 }
